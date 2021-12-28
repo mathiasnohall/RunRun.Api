@@ -1,0 +1,26 @@
+## Step 1 - Build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# Create working directory inside container
+WORKDIR /source
+# Copy .csproj file into container
+COPY RunRun.Api/*.csproj ./RunRun.Api/
+
+RUN dotnet restore RunRun.Api/RunRun.Api.csproj
+# Copy all our code that change more often then dependencies
+COPY . .
+# Publish the needed files in /app
+RUN dotnet publish -c release -o /app --no-restore RunRun.Api/RunRun.Api.csproj
+## Step 2 - Runtime
+# Use Runtime .NET Baseimage from Microsoft through ICAs Nexus Repository
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runner
+
+ENV COMPlus_EnableDiagnostics=0
+
+#Create working directory inside container
+WORKDIR /app
+# Copy the content the previously created build container (build references the as build in first step)
+COPY --from=build /app .
+# Expose port 5443 to be used
+EXPOSE 5443
+# Specify an entrypoint for the container
+ENTRYPOINT [ "dotnet", "RunRun.Api.dll" ]
