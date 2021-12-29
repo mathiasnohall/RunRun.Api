@@ -10,7 +10,7 @@ namespace RunRun.Api.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok("ok");
+            return Ok("RunRun API");
         }
     }
 }
