@@ -9,12 +9,13 @@ RUN dotnet restore RunRun.Api/RunRun.Api.csproj
 # Copy all our code that change more often then dependencies
 COPY . .
 # Publish the needed files in /app
-RUN dotnet publish -c release -o /app --no-restore RunRun.Api/RunRun.Api.csproj
+RUN dotnet publish -c release -o /app RunRun.Api/RunRun.Api.csproj
 ## Step 2 - Runtime
 # Use Runtime .NET Baseimage from Microsoft through ICAs Nexus Repository
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runner
 
 ENV COMPlus_EnableDiagnostics=0
+ENV ASPNETCORE_URLS=http://+:5443
 
 #Create working directory inside container
 WORKDIR /app

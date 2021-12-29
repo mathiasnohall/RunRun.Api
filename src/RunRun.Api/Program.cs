@@ -3,6 +3,9 @@ using RunRun.Api.Services.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseKestrel();
+builder.WebHost.UseUrls("http://localhost:5443");
+
 // Add services to the container.
 
 builder.Services.AddControllers();
