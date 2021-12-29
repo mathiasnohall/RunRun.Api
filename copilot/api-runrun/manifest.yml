@@ -1,11 +1,20 @@
-# The manifest for the "runrun-api" service.
+# The manifest for the "api-runrun" service.
 # Read the full specification for the "Request-Driven Web Service" type at:
 # https://aws.github.io/copilot-cli/docs/manifest/rd-web-service/
 
 # Your service name will be used in naming your resources like log groups, App Runner services, etc.
-name: runrun-api
+name: api-runrun
 # The "architecture" of the service you're running.
 type: Request-Driven Web Service
+
+http:
+  healthcheck:
+    path: '/'
+    healthy_threshold: 3
+    unhealthy_threshold: 5
+    interval: 10s
+    timeout: 5s
+  alias: api.runruntarget.com
 
 image:
   # Docker build arguments.
