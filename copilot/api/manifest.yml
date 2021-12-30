@@ -1,4 +1,4 @@
-# The manifest for the "api-runrun" service.
+# The manifest for the "api" service.
 # Read the full specification for the "Request-Driven Web Service" type at:
 # https://aws.github.io/copilot-cli/docs/manifest/rd-web-service/
 
@@ -14,7 +14,7 @@ http:
     unhealthy_threshold: 5
     interval: 10s
     timeout: 5s
-
+    
 image:
   # Docker build arguments.
   # For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/rd-web-service/#image-build
