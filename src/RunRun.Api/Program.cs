@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using RunRun.Api.Repositories.v1;
 using RunRun.Api.Services.v1;
 
@@ -11,6 +12,7 @@ builder.WebHost.UseUrls("http://localhost:5443");
 builder.Services.AddControllers();
 builder.Services.AddMvc();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors(c => c.AddPolicy("apiOrigin", b => b.WithOrigins("https://mqpgzmdssy.eu-west-1.awsapprunner.com", "http://localhost:3000")));
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
@@ -22,6 +24,7 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseCors("apiOrigin");
 app.UseAuthorization();
 
 app.MapControllers();
