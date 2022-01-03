@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RunRun.Api.Models.RequestModels.V1;
 using RunRun.Api.Models.v1;
 using RunRun.Api.Services.v1;
 
@@ -22,11 +23,11 @@ namespace RunRun.Api.Controllers.v1
             return Ok(await _orderService.GetOrder(orderId));
         }
 
-        [Route("{orderId}")]
         [HttpPost]
-        public async Task<ActionResult<Order>> Post([FromRoute] Guid orderId)
+        public async Task<ActionResult<Order>> Post([FromBody] OrderRequest orderRequest)
         {
-            return Created(orderId.ToString(), await _orderService.SaveOrder(new Order { Id = orderId }));
+            var order = await _orderService.CreateOrder(orderRequest);
+            return Created(order.Id.ToString(), order);
         }
     }
 }
