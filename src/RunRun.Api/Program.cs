@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(c => c.AddPolicy("apiOrigin", 
     b => b.WithOrigins("https://mqpgzmdssy.eu-west-1.awsapprunner.com", "http://localhost:3000")
         .AllowAnyMethod()
-        .AllowAnyMethod()));
+        .AllowAnyHeader()));
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
