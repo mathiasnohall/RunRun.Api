@@ -60,7 +60,7 @@ namespace RunRun.Api.Services.v1
             await _smtpClient.SendAsync(new MailMessage("noreply@runruntarget.com", order.Customer.Email) 
             { 
                 Subject = "Orderbekräftelse",
-                Body = "tack för din order! Vi kommer skicka din order så for betalningen har kommit in." 
+                Body = $"Hej {order.Customer.FirstName}. Tack för din order! Vi kommer skicka din order så fort betalningen har kommit in." 
             });
         }
 
