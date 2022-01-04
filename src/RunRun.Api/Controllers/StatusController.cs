@@ -4,6 +4,7 @@ namespace RunRun.Api.Controllers
 {
     [ApiController]
     [Route("/")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class StatusController : ControllerBase
     {
 
