@@ -16,17 +16,18 @@ namespace RunRun.Api.Controllers.v1
             _orderService = orderService;
         }
 
-        [Route("{orderId}")]
+        [Route("{orderId}", Name = "GetOrder")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Order))]
-        public async Task<ActionResult<Order>> Get([FromRoute] Guid orderId)
+        public async Task<ActionResult<Order>> GetOrder([FromRoute] Guid orderId)
         {
             return Ok(await _orderService.GetOrder(orderId));
         }
 
         [HttpPost]
+        [Route("", Name = "CreateOrder")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Order))]
-        public async Task<ActionResult<Order>> Post([FromBody] OrderRequest orderRequest)
+        public async Task<ActionResult<Order>> CreateOrder([FromBody] OrderRequest orderRequest)
         {
             var order = await _orderService.CreateOrder(orderRequest);
             return Created(order.Id.ToString(), order);
