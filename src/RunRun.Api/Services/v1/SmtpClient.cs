@@ -22,6 +22,7 @@ namespace RunRun.Api.Services.v1
             using (var client = new System.Net.Mail.SmtpClient(_configuration["smtpClient:host"]))
             {
                 client.EnableSsl = true;
+                client.Port = 587;
                 client.Credentials =
                     new NetworkCredential(_configuration["smtpClient:userName"], _configuration["smtpClient:password"]);
                 await client.SendMailAsync(mailMessage);
