@@ -14,5 +14,9 @@ namespace RunRun.Api.Models.RequestModels.V1
         public string PostalCode { get; set; }
         [Required]
         public string City { get; set; }
+        [Required]
+        public string Phone { get; set; }
+        [Required]
+        public string Email { get; set; }
     }
 }

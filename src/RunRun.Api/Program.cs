@@ -18,6 +18,7 @@ builder.Services.AddCors(c => c.AddPolicy("apiOrigin",
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<ISmtpClient, SmtpClient>();
 
 var app = builder.Build();
 
