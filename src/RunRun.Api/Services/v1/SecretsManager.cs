@@ -19,7 +19,7 @@ namespace RunRun.Api.Services.v1
             _config = new AmazonSecretsManagerConfig { RegionEndpoint = RegionEndpoint.EUWest1 };
         }
 
-        private const string SecretId = "smtp";
+        private const string SecretId = "arn:aws:secretsmanager:eu-west-1:632122663289:secret:smtp-g71TUu";
 
         public async Task<SmtpSecret> GetSmtpSecret()
         {
