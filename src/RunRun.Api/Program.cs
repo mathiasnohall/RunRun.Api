@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<ISmtpClient, SmtpClient>();
+builder.Services.AddTransient<ISecretManager, SecretManager>();
 
 var app = builder.Build();
 
