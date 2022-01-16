@@ -11,10 +11,11 @@ builder.WebHost.UseUrls("http://localhost:5443");
 builder.Services.AddControllers();
 builder.Services.AddMvc();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddCors(c => c.AddPolicy("apiOrigin", 
-    b => b.WithOrigins("https://mqpgzmdssy.eu-west-1.awsapprunner.com", "http://localhost:3000")
+builder.Services.AddCors(c => c.AddPolicy("apiOrigin",
+    b => b.WithOrigins("https://mqpgzmdssy.eu-west-1.awsapprunner.com", "https://www.runruntarget.com", "http://runruntarget.com", "http://localhost:3000")
         .AllowAnyMethod()
-        .AllowAnyHeader()));
+        .AllowAnyHeader()
+        .AllowCredentials()));
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
